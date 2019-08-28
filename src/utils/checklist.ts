@@ -3,7 +3,7 @@ import { IUserEntity } from "src/app/entities/user.interface";
 export class Checklist {
   private static instance: Checklist;
   private users: Map<string, IUserEntity> = new Map();
-  private myMap: Map<string, boolean> = new Map();
+  private checkedlist: Map<string, boolean> = new Map();
 
 
   private constructor() {
@@ -37,10 +37,10 @@ export class Checklist {
 
 
   abc() {
-    this.myMap.set("", true)
+    this.checkedlist.set("", true)
   }
 
   abcd(checkKey: string) {
-    this.myMap.get(checkKey)
+    this.checkedlist.get(checkKey)
   }
 }

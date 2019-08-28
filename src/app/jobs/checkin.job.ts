@@ -26,8 +26,7 @@ export class CheckinJob extends NestSchedule {
     let users = checklist.fetchUsers();
 
     for (const userEntity of users.values()) {
-      console.log("cur user:" + userEntity.phone)
-      // console.info(userEntity)
+      console.log("cur user:" + userEntity.phone + " @ time:" + Date.now.toString())
 
       // login to get token
       try {

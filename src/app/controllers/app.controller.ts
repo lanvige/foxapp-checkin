@@ -4,7 +4,7 @@ import { AppData } from 'src/app/entities/app.interface';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) { }
 
   @Get('v1/info')
   getHello(): Promise<AppData> {

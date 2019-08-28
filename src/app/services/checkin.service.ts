@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { IUserEntity } from 'src/app/entities/user.interface';
-import { ICheckinResponse, ICheckinData } from 'src/app/entities/checkin.interface';
-import { Checklist } from '../../utils/checklist'
-import { RegisterUserDto } from 'src/app/entities/dto';
+import axios, { AxiosRequestConfig } from 'axios';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
 import { HttpStatus } from '@nestjs/common';
+import { IUserEntity } from 'src/app/entities/user.interface';
+import { ICheckinResponse, ICheckinData } from 'src/app/entities/checkin.interface';
+import { RegisterUserDto } from 'src/app/entities/dto';
 import { ConfigService } from 'src/app/services/config.service';
-import axios, { AxiosRequestConfig } from 'axios';
 
 @Injectable()
 export class CheckinService {
@@ -15,7 +14,7 @@ export class CheckinService {
 
   // register a new user
   // 签到执行
-  async checkin(user: IUserEntity): Promise<boolean>{
+  async checkin(user: IUserEntity): Promise<boolean> {
     const url: string = this.config.get('foxapp_checkin_path')
     // console.log("url=====" + url)
     const data = { 'phone_number': user.phone, 'password': user.password };
@@ -39,12 +38,12 @@ export class CheckinService {
       const resp = await axios.request<ICheckinData>(options);
 
       if (resp.data.code === 0) {
-        console.info("==== 签到成功 ====")
+        // console.info("==== 签到成功 ====")
         // console.info(resp.data)
         return true
       }
     } catch (e) {
-      console.log(e)
+      console.error(e)
       return false
     }
 

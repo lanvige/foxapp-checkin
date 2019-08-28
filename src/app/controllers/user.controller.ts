@@ -1,23 +1,15 @@
 
 import { Get, Post, Body, Put, Delete, Param, Controller, UsePipes } from '@nestjs/common';
 import { Request } from 'express';
+import { HttpException } from '@nestjs/common/exceptions/http.exception';
 import { RegisterUserDto } from 'src/app/entities/dto';
 import { IUserEntity, IResp } from 'src/app/entities/user.interface';
-import { UserService } from 'src/app/services/user.service';
-import { CheckinService } from '../services/checkin.service';
-import { HttpException } from '@nestjs/common/exceptions/http.exception';
 import { Checklist } from 'src/utils/checklist'
-
-
-async function asyncForEach(array, callback) {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array);
-  }
-}
+import { UserService } from 'src/app/services/user.service';
+import { CheckinService } from 'src/app/services/checkin.service';
 
 @Controller()
 export class UserController {
-
   constructor(private readonly userService: UserService,
     private readonly checkinService: CheckinService) { }
 
