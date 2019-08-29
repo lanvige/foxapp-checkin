@@ -43,7 +43,7 @@ export class UserController {
   @Post('v1/login')
   async login(@Body('user') regUserDto: RegisterUserDto): Promise<IResp> {
 
-    console.log(regUserDto.password + "=====" + regUserDto.phone)
+    console.log("regUserDto == " + regUserDto.phone)
 
     let user: IUserEntity;
 

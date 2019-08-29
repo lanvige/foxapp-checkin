@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, HttpModule } from '@nestjs/common';
 import { AppController } from 'src/app/controllers/app.controller';
 import { UserController } from 'src/app/controllers/user.controller';
 import { AppService } from 'src/app/services/app.service';
@@ -8,7 +8,7 @@ import { CheckinJob } from 'src/app/jobs/checkin.job';
 import { CheckinService } from './app/services/checkin.service';
 
 @Module({
-  imports: [],
+  imports: [HttpModule],
   controllers: [AppController, UserController],
   providers: [AppService, UserService, CheckinService,
     CheckinJob,

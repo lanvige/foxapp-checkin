@@ -1,18 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
-import { HttpStatus } from '@nestjs/common';
+import { HttpStatus, HttpService } from '@nestjs/common';
 import axios, { AxiosRequestConfig } from 'axios';
 import { IUserEntity, IUserAuth, ILoginResponse, ILoginData } from 'src/app/entities/user.interface';
 import { RegisterUserDto } from 'src/app/entities/dto';
 import { Checklist } from '../../utils/checklist'
 import { ConfigService } from 'src/app/services/config.service';
+import { resolve } from 'url';
 
 
 
 @Injectable()
 export class UserService {
-  constructor(private readonly config: ConfigService) {
-  }
+  constructor(
+    private readonly httpService: HttpService,
+    private readonly config: ConfigService
+  ) { }
 
   // register a new user
   async register(loginUserDto: RegisterUserDto): Promise<IUserEntity> {
@@ -72,4 +75,39 @@ export class UserService {
 
     return auth
   }
+
+  // // https://www.joshmorony.com/using-providers-and-http-requests-in-a-nestjs-backend/
+  // async login2(user: IUserEntity): Promise<IUserAuth> {
+
+  //   const url = this.config.get('foxapp_login_path')
+  //   const bodyData = { 'phone_number': user.phone, 'password': user.password };
+  //   const headers = {
+  //     'Content-Type': 'application/json',
+  //     'Accept': '*/*',
+  //     'User-Agent': 'FoxOne/2.4.0 (one.fox.foxapp; build:288; iOS 12.4.0) Alamofire/2.4.0'
+  //   }
+
+  //   const options: AxiosRequestConfig = {
+  //     url,
+  //     method: 'POST',
+  //     headers: headers,
+  //     data: bodyData,
+  //     // transformResponse: (r: ILoginResponse) => r.data
+  //   };
+
+
+  //   let response = this.httpService.request(options)
+  //   response.subscribe((data) => {
+  //     // resolve(data.data)
+  //   }, (err) => {
+  //     // xxx
+  //   })
+
+
+  //   try {
+  //     let resp2 = await this.httpService.request(options)
+  //     let abc = resp2
+  //   } catch (err) {
+  //   }
+  // }
 }
