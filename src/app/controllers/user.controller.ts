@@ -1,11 +1,11 @@
 import { Get, Post, Body, Controller } from '@nestjs/common';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
-import { RegisterUserDto } from 'src/app/entities/dto';
-import { IUserEntity, IResp } from 'src/app/entities/user.interface';
-import { Checklist } from 'src/utils/checklist';
-import { UserService } from 'src/app/services/user.service';
-import { CheckinService } from 'src/app/services/checkin.service';
-import { MyLogger } from 'src/utils/logger';
+import { RegisterUserDto } from 'app/entities/dto';
+import { IUserEntity, IResp } from 'app/entities/user.interface';
+import { Checklist } from 'utils/checklist';
+import { UserService } from 'app/services/user.service';
+import { CheckinService } from 'app/services/checkin.service';
+import { MyLogger } from 'utils/logger';
 
 @Controller()
 export class UserController {

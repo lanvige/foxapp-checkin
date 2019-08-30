@@ -1,17 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { HttpStatus, HttpService } from '@nestjs/common';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { Observable } from 'rxjs';
 import {
   IUserEntity,
   IUserAuth,
   ILoginResponse,
   ILoginData,
-} from 'src/app/entities/user.interface';
-import { RegisterUserDto } from 'src/app/entities/dto';
-import { Checklist } from '../../utils/checklist';
-import { ConfigService } from 'src/config/config';
-import { MyLogger } from 'src/utils/logger';
-import { Observable } from 'rxjs';
+} from 'app/entities/user.interface';
+import { RegisterUserDto } from 'app/entities/dto';
+
+import { ConfigService } from 'config/config';
+import { Checklist } from 'utils/checklist';
+import { MyLogger } from 'utils/logger';
+
 
 @Injectable()
 export class UserService {

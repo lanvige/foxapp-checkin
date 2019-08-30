@@ -1,4 +1,4 @@
-import { IUserEntity } from 'src/app/entities/user.interface';
+import { IUserEntity } from 'app/entities/user.interface';
 
 export class Checklist {
   private static instance: Checklist;

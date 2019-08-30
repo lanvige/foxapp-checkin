@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import axios, { AxiosRequestConfig } from 'axios';
-import { IUserEntity } from 'src/app/entities/user.interface';
+import { IUserEntity } from 'app/entities/user.interface';
 import {
   ICheckinResponse,
   ICheckinData,
-} from 'src/app/entities/checkin.interface';
-import { ConfigService } from 'src/config/config';
-import { MyLogger } from 'src/utils/logger';
+} from 'app/entities/checkin.interface';
+import { ConfigService } from 'config/config';
+import { MyLogger } from 'utils/logger';
 
 @Injectable()
 export class CheckinService {

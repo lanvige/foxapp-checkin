@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { Checklist } from 'src/utils/checklist';
 import { Cron, Interval, Timeout, NestSchedule } from 'nest-schedule';
-import { UserService } from 'src/app/services/user.service';
-import { CheckinService } from '../services/checkin.service';
-import { MyLogger } from 'src/utils/logger';
+import { UserService } from 'app/services/user.service';
+import { CheckinService } from 'app/services/checkin.service';
+import { Checklist } from 'utils/checklist';
+import { MyLogger } from 'utils/logger';
 
 @Injectable()
 export class CheckinJob extends NestSchedule {

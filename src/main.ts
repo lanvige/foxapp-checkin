@@ -3,7 +3,7 @@ import * as helmet from 'helmet';
 // import * as csurf from 'csurf';
 import * as rateLimit from 'express-rate-limit';
 import { MainModule } from './main.module';
-import { MyLogger } from 'src/utils/logger';
+import { MyLogger } from 'utils/logger';
 
 async function bootstrap() {
   const app = await NestFactory.create(MainModule, {
