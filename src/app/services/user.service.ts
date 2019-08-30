@@ -1,13 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { HttpException } from '@nestjs/common/exceptions/http.exception';
 import { HttpStatus, HttpService } from '@nestjs/common';
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { IUserEntity, IUserAuth, ILoginResponse, ILoginData } from 'src/app/entities/user.interface';
 import { RegisterUserDto } from 'src/app/entities/dto';
 import { Checklist } from '../../utils/checklist';
 import { ConfigService } from 'src/config/config';
 import { MyLogger } from 'src/utils/logger';
-import { resolve } from 'url';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -46,7 +45,7 @@ export class UserService {
       headers: {
         'Content-Type': 'application/json',
         'Accept': '*/*',
-        'User-Agent': 'FoxOne/2.4.0 (one.fox.foxapp; build:288; iOS 12.4.0) Alamofire/2.4.0'
+        'User-Agent': 'FoxOne/2.4.0 (one.fox.foxapp; build:288; iOS 12.4.0) Alamofire/2.4.0',
       },
       data: bodyData,
       // transformResponse: (r: ILoginResponse) => r.data
@@ -58,10 +57,10 @@ export class UserService {
       const response = await axios.request(options);
       const respData = response.data;
       autData = respData.data;
-      // console.info(autData)
+      // this.logger.log(autData);
     } catch (e) {
       this.logger.log(e.toString());
-      // console.info(response.data)
+      // this.logger.log(response.data)
       return null;
     }
 
@@ -77,8 +76,7 @@ export class UserService {
   }
 
   // // https://www.joshmorony.com/using-providers-and-http-requests-in-a-nestjs-backend/
-  // async login2(user: IUserEntity): Promise<IUserAuth> {
-
+  // login2(user: IUserEntity): IUserAuth {
   //   const url = this.config.get('foxapp_login_path');
   //   const reqBody = { phone_number: user.phone, password: user.password };
   //   const ReqHeaders = {
@@ -97,9 +95,10 @@ export class UserService {
 
   //   const response = this.httpService.request(options);
   //   response.subscribe((data) => {
-  //     resolve(data.data)
+  //     this.logger.log(data);
+  //     return null;
   //   }, (err) => {
-  //     // xxx
+  //     this.logger.log(err);
   //   });
   // }
 }

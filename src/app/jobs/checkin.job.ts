@@ -48,7 +48,7 @@ export class CheckinJob extends NestSchedule {
 
       // login to get token
       try {
-        const auth = await this.userService.login(userEntity)
+        const auth = await this.userService.login(userEntity);
         this.logger.log('login ✅: ' + userEntity.phone);
       } catch {
         this.logger.log('login ❌: ' + userEntity.phone);

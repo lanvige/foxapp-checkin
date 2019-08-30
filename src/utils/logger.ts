@@ -1,23 +1,23 @@
 import { Logger, LoggerService } from '@nestjs/common';
 
 export class MyLogger implements LoggerService {
-  verbose(message: string) {
+  verbose(message: any) {
     Logger.verbose(message);
   }
 
-  debug(message: string) {
+  debug(message: any) {
     Logger.debug(message);
   }
 
-  log(message: string) {
+  log(message: any) {
     Logger.log(message);
   }
 
-  error(message: string, trace: string) {
+  error(message: any, trace: string) {
     Logger.error(message, trace);
   }
 
-  warn(message: string) {
+  warn(message: any) {
     Logger.warn(message);
   }
 }

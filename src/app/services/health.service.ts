@@ -10,7 +10,7 @@ import { Injectable } from '@nestjs/common';
 export class TerminusOptionsService implements TerminusOptionsFactory {
   constructor(
     private readonly dns: DNSHealthIndicator,
-  ) {}
+  ) { }
 
   createTerminusOptions(): TerminusModuleOptions {
     const healthEndpoint: TerminusEndpoint = {
@@ -19,6 +19,7 @@ export class TerminusOptionsService implements TerminusOptionsFactory {
         async () => this.dns.pingCheck('baidu', 'https://baidu.com'),
       ],
     };
+
     return {
       endpoints: [healthEndpoint],
     };
