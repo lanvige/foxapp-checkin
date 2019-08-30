@@ -25,7 +25,7 @@ import { TerminusOptionsService } from 'app/services/health.service';
     CheckinJob,
     {
       provide: ConfigService,
-      useValue: new ConfigService(`src/config/application.env`),
+      useValue: new ConfigService(`config/application.env`),
     },
     MyLogger,
   ],
