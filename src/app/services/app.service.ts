@@ -6,8 +6,8 @@ export class AppService {
 
   getHello(): Promise<AppData> {
     const data = {
-      version: "1.0.0",
-      builder: "ax212",
+      version: '1.0.0',
+      builder: 'ax212',
     };
 
     return new Promise(function (resolve) {

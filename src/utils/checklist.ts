@@ -1,10 +1,9 @@
-import { IUserEntity } from "src/app/entities/user.interface";
+import { IUserEntity } from 'src/app/entities/user.interface';
 
 export class Checklist {
   private static instance: Checklist;
   private users: Map<string, IUserEntity> = new Map();
   private checkedlist: Map<string, boolean> = new Map();
-
 
   private constructor() {
     // ..
@@ -18,29 +17,27 @@ export class Checklist {
     return Checklist.instance;
   }
 
-
   // add user
   register(user: IUserEntity): number {
-    this.users.set(user.phone, user)
+    this.users.set(user.phone, user);
 
     return this.users.size;
   }
 
   // fetch
   fetch(key: string): IUserEntity {
-    return this.users.get(key)
+    return this.users.get(key);
   }
 
   fetchUsers(): Map<string, IUserEntity> {
-    return this.users
+    return this.users;
   }
 
-
   abc() {
-    this.checkedlist.set("", true)
+    this.checkedlist.set('xxx', true);
   }
 
   abcd(checkKey: string) {
-    this.checkedlist.get(checkKey)
+    this.checkedlist.get(checkKey);
   }
 }

@@ -1,9 +1,8 @@
 
 export interface ICheckinResponse {
-  data: ICheckinData
+  data: ICheckinData;
 }
 
 export interface ICheckinData {
   code: number;
 }
-

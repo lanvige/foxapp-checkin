@@ -23,7 +23,7 @@ export interface IUserEntity {
 
 // login
 export interface ILoginResponse {
-  data: ILoginData
+  data: ILoginData;
 }
 
 export interface ILoginData {
@@ -34,5 +34,5 @@ export interface ILoginData {
 }
 
 export interface IResp {
-  success: boolean
+  success: boolean;
 }

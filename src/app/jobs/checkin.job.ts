@@ -3,13 +3,15 @@ import { Checklist } from 'src/utils/checklist'
 import { Cron, Interval, Timeout, NestSchedule } from 'nest-schedule';
 import { UserService } from 'src/app/services/user.service';
 import { CheckinService } from '../services/checkin.service';
+import { MyLogger } from 'src/utils/logger';
 
 @Injectable()
 export class CheckinJob extends NestSchedule {
   constructor(
     private readonly userService: UserService,
-    private readonly checkinService: CheckinService) {
-    super()
+    private readonly checkinService: CheckinService,
+    private readonly logger: MyLogger) {
+    super();
   }
 
   // do checkin with cron job
@@ -19,7 +21,7 @@ export class CheckinJob extends NestSchedule {
     endTime: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
   })
   async checkinJob() {
-    await this.checkin()
+    await this.checkin();
   }
 
   // @Interval(2000)
@@ -29,7 +31,6 @@ export class CheckinJob extends NestSchedule {
   //   // return true;
   // }
 
-
   // 流程应该是
   // 1 判断 token 是否存在，并是否过期
   // 1.1 token 不存在，去登录
@@ -38,33 +39,33 @@ export class CheckinJob extends NestSchedule {
   // 2 签到，看看行不行
   async checkin() {
     // Get userlist
-    let checklist = Checklist.getInstance();
-    let users = checklist.fetchUsers();
+    const checklist = Checklist.getInstance();
+    const users = checklist.fetchUsers();
 
     for (const userEntity of users.values()) {
-      var event = new Date()
-      console.log("cur user:" + userEntity.phone + " @ time:" +event.toISOString())
+      const event = new Date();
+      this.logger.log('cur user:' + userEntity.phone + ' @ time:' + event.toISOString());
 
       // login to get token
       try {
         const auth = await this.userService.login(userEntity)
-        console.log("login ✅: " + userEntity.phone)
+        this.logger.log('login ✅: ' + userEntity.phone);
       } catch {
-        console.log("login ❌: " + userEntity.phone)
-        return
+        this.logger.log('login ❌: ' + userEntity.phone);
+        return;
       }
 
       // checkin
       if (userEntity.auth.access_token === null) {
-        console.log("login ❌: " + userEntity.phone)
-        return
+        this.logger.log('login ❌: ' + userEntity.phone);
+        return;
       }
 
       try {
-        await this.checkinService.checkin(userEntity)
-        console.log("checkin ✅: " + userEntity.phone)
+        await this.checkinService.checkin(userEntity);
+        this.logger.log('checkin ✅: ' + userEntity.phone);
       } catch (e) {
-        console.log("checkin ❌: " + userEntity.phone)
+        this.logger.log('checkin ❌: ' + userEntity.phone);
       }
     }
   }
