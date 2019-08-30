@@ -8,9 +8,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class TerminusOptionsService implements TerminusOptionsFactory {
-  constructor(
-    private readonly dns: DNSHealthIndicator,
-  ) { }
+  constructor(private readonly dns: DNSHealthIndicator) {}
 
   createTerminusOptions(): TerminusModuleOptions {
     const healthEndpoint: TerminusEndpoint = {

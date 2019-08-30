@@ -1,7 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { HttpStatus, HttpService } from '@nestjs/common';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { IUserEntity, IUserAuth, ILoginResponse, ILoginData } from 'src/app/entities/user.interface';
+import {
+  IUserEntity,
+  IUserAuth,
+  ILoginResponse,
+  ILoginData,
+} from 'src/app/entities/user.interface';
 import { RegisterUserDto } from 'src/app/entities/dto';
 import { Checklist } from '../../utils/checklist';
 import { ConfigService } from 'src/config/config';
@@ -14,7 +19,7 @@ export class UserService {
     private readonly httpService: HttpService,
     private readonly config: ConfigService,
     private readonly logger: MyLogger,
-  ) { }
+  ) {}
 
   // register a new user
   async register(loginUserDto: RegisterUserDto): Promise<IUserEntity> {
@@ -44,8 +49,9 @@ export class UserService {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': '*/*',
-        'User-Agent': 'FoxOne/2.4.0 (one.fox.foxapp; build:288; iOS 12.4.0) Alamofire/2.4.0',
+        Accept: '*/*',
+        'User-Agent':
+          'FoxOne/2.4.0 (one.fox.foxapp; build:288; iOS 12.4.0) Alamofire/2.4.0',
       },
       data: bodyData,
       // transformResponse: (r: ILoginResponse) => r.data

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Checklist } from 'src/utils/checklist'
+import { Checklist } from 'src/utils/checklist';
 import { Cron, Interval, Timeout, NestSchedule } from 'nest-schedule';
 import { UserService } from 'src/app/services/user.service';
 import { CheckinService } from '../services/checkin.service';
@@ -10,7 +10,8 @@ export class CheckinJob extends NestSchedule {
   constructor(
     private readonly userService: UserService,
     private readonly checkinService: CheckinService,
-    private readonly logger: MyLogger) {
+    private readonly logger: MyLogger,
+  ) {
     super();
   }
 
@@ -44,7 +45,9 @@ export class CheckinJob extends NestSchedule {
 
     for (const userEntity of users.values()) {
       const event = new Date();
-      this.logger.log('cur user:' + userEntity.phone + ' @ time:' + event.toISOString());
+      this.logger.log(
+        'cur user:' + userEntity.phone + ' @ time:' + event.toISOString(),
+      );
 
       // login to get token
       try {

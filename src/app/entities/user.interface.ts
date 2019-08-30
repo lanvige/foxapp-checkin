@@ -1,4 +1,3 @@
-
 export interface IUserAuth {
   access_token: string;
   refresh_token: string;

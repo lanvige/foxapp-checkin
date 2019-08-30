@@ -1,4 +1,3 @@
-
 export interface ICheckinResponse {
   data: ICheckinData;
 }

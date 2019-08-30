@@ -1,4 +1,3 @@
-
 import { Get, Post, Body, Controller } from '@nestjs/common';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
 import { RegisterUserDto } from 'src/app/entities/dto';
@@ -13,12 +12,11 @@ export class UserController {
   constructor(
     private readonly userService: UserService,
     private readonly checkinService: CheckinService,
-    private readonly logger: MyLogger) {
-  }
+    private readonly logger: MyLogger,
+  ) {}
 
   @Post('v1/register')
   async login(@Body('user') regUserDto: RegisterUserDto): Promise<IResp> {
-
     this.logger.log('regUserDto == ' + regUserDto.phone);
 
     let user: IUserEntity;
@@ -42,7 +40,9 @@ export class UserController {
 
     for (const userEntity of users.values()) {
       const event = new Date();
-      this.logger.log('cur user:' + userEntity.phone + ' @ time:' + event.toISOString());
+      this.logger.log(
+        'cur user:' + userEntity.phone + ' @ time:' + event.toISOString(),
+      );
 
       // login to get token
       try {

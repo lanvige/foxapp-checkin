@@ -11,13 +11,17 @@ import { TerminusModule } from '@nestjs/terminus';
 import { TerminusOptionsService } from 'src/app/services/health.service';
 
 @Module({
-  imports: [HttpModule,
+  imports: [
+    HttpModule,
     TerminusModule.forRootAsync({
       useClass: TerminusOptionsService,
     }),
   ],
   controllers: [AppController, UserController],
-  providers: [AppService, UserService, CheckinService,
+  providers: [
+    AppService,
+    UserService,
+    CheckinService,
     CheckinJob,
     {
       provide: ConfigService,
@@ -26,5 +30,4 @@ import { TerminusOptionsService } from 'src/app/services/health.service';
     MyLogger,
   ],
 })
-
-export class MainModule { }
+export class MainModule {}
